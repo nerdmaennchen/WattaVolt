@@ -1,0 +1,10 @@
+annotated-types==0.7.0
+certifi==2024.8.30
+charset-normalizer==3.4.0
+easyeda2kicad==0.8.0
+idna==3.10
+pydantic==2.9.2
+pydantic_core==2.23.4
+requests==2.32.3
+typing_extensions==4.12.2
+urllib3==2.2.3

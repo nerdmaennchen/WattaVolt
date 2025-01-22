@@ -1,0 +1,93 @@
+#include "usb.h"
+#include "cranc/module/Module.h"
+
+#include "cranc/coro/Task.h"
+#include "cranc/coro/Awaitable.h"
+
+#include "util/span_helpers.h"
+
+#include "usb_dev.h"
+
+namespace {
+
+using namespace usb::literals;
+
+auto iface_name = "iso_in_test"_usb_str;
+
+cranc::coro::Awaitable<std::span<std::uint8_t>, cranc::LockGuard> tx_done;
+
+std::array<usb::endpoint, 1> eps  = {
+    usb::endpoint{
+        .descriptor = {
+            .bEndpointAddress = USB_DIR_IN | 4,
+            .bmAttributes = USB_TRANSFER_TYPE_ISOCHRONOUS,
+            .wMaxPacketSize = 128,
+            .bInterval = 1,
+        },
+        .double_buffered = false,
+        .cb = [](std::span<std::uint8_t> data) {
+            tx_done(data);
+        },
+    },
+};
+
+std::array<usb::usb_iface_setting, 2> iface_settings {
+    usb::usb_iface_setting{
+        .descriptor = {
+            .bInterfaceClass = 0xff,
+            .bInterfaceSubClass = 0x00,
+            .bInterfaceProtocol = 0x00,
+        },
+        .iInterface = &iface_name,
+    },
+    usb::usb_iface_setting{
+        .descriptor = {
+            .bInterfaceClass = 0xff,
+            .bInterfaceSubClass = 0x00,
+            .bInterfaceProtocol = 0x00,
+        },
+        .endpoints = eps,
+        .iInterface = &iface_name,
+    },
+};
+usb::Interface iface {
+    default_usb_dev::config,
+    iface_settings
+};
+
+struct : cranc::Module {
+    using cranc::Module::Module;
+
+    cranc::coro::Task<void> worker;
+
+    cranc::coro::Task<void> run() {
+        struct {
+            std::uint64_t i;
+            std::array<std::uint8_t, 112> padding;
+            std::uint64_t ts;
+        } out;
+        out.i = 0;
+        for (int i=0; i < out.padding.size(); ++i) {
+            out.padding[i] = i+1;
+        }
+        while (true) {
+            out.ts = cranc::getSystemTime().count();
+            eps[0].send(to_span(out));
+            co_await tx_done;
+            ++out.i;
+        }
+        co_return;
+    }
+
+    void init() override
+    {
+        iface.on_altsetting_changed = [this]() {
+            worker.terminate();
+            if (iface.cur_active_altsetting.value_or(0) == 1) {
+                worker = run();
+            }
+        };
+    }
+} _{1000};
+
+}

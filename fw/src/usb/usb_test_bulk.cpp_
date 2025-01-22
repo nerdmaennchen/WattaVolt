@@ -1,0 +1,68 @@
+#include "usb.h"
+#include "cranc/module/Module.h"
+
+#include "cranc/coro/Task.h"
+#include "cranc/coro/Awaitable.h"
+
+#include "usb_dev.h"
+
+namespace {
+
+using namespace usb::literals;
+
+auto echo_iface_name = "echo"_usb_str;
+
+std::array<usb::endpoint, 2> eps  = {
+    usb::endpoint{
+        .descriptor = {
+            .bEndpointAddress = USB_DIR_OUT | 3,
+            .bmAttributes = USB_TRANSFER_TYPE_BULK,
+            .wMaxPacketSize = 64,
+            .bInterval = 0,
+        },
+        .double_buffered = false,
+        .cb = [](std::span<std::uint8_t> data) {
+            eps[1].send(data);
+            eps[0].start_rx(); 
+        },
+    },
+    usb::endpoint{
+        .descriptor = {
+            .bEndpointAddress = USB_DIR_IN | 3,
+            .bmAttributes = USB_TRANSFER_TYPE_BULK,
+            .wMaxPacketSize = 64,
+            .bInterval = 0,
+        },
+        .double_buffered = false,
+        .cb = [](std::span<std::uint8_t>){ },
+    },
+};
+
+std::array<usb::usb_iface_setting, 1> iface_settings {
+    usb::usb_iface_setting{
+        .descriptor = {
+            .bInterfaceClass = 0xff,
+            .bInterfaceSubClass = 0x00,
+            .bInterfaceProtocol = 0x00,
+        },
+        .endpoints = eps,
+        .iInterface = &echo_iface_name,
+    },
+};
+usb::Interface iface {
+    default_usb_dev::config,
+    iface_settings
+};
+
+struct : cranc::Module {
+    using cranc::Module::Module;
+
+    void init() override
+    {
+        iface.on_altsetting_changed = []() {
+            eps[0].start_rx();
+        };
+    }
+} _{1000};
+
+}

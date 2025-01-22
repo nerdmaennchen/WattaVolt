@@ -1,0 +1,236 @@
+(footprint "CONN-TH_2P-P5.00_WJ500V-5.08-2P"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -4 0)
+		(layer "F.SilkS")
+		(uuid "d9a00a65-c414-455d-8c53-2f92cc2b5e83")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CONN-TH_2P-P5.00_WJ500V-5.08-2P"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(uuid "04509d23-3338-4297-9432-a5155cbd34f9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c0ea637e-b456-4db0-94ed-eb9ed76d3cd2")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0b038e4d-1b97-4ea1-b90c-daa9914c65e6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "16bf1bcb-066d-4ca2-a28c-06c44adb98e0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -5.68 -4.75)
+		(end -5.68 -3.75)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "991861f0-e007-47d6-a942-cf8ddb351ca8")
+	)
+	(fp_line
+		(start -5.68 -3.75)
+		(end -5.08 -4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "39253cf4-5084-4ab3-bf47-357edc0750e6")
+	)
+	(fp_line
+		(start -5.68 2.75)
+		(end -5.68 3.75)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8bdc0060-5dea-45b1-ab63-81c9223229ae")
+	)
+	(fp_line
+		(start -5.68 3.75)
+		(end -5.08 3.5)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4697149a-c568-43d8-b3d5-792bd973283a")
+	)
+	(fp_line
+		(start -5.08 -4.5)
+		(end -5.68 -4.75)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a88c924e-12c8-429c-af69-c526af63a2f7")
+	)
+	(fp_line
+		(start -5.08 3)
+		(end -5.68 2.75)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "af2a3f11-30ec-4e5e-9971-13e1949b66ae")
+	)
+	(fp_line
+		(start -5.08 4.52)
+		(end -5.08 -5.64)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e3335603-82d5-44af-bbb6-a2cd65fc9e99")
+	)
+	(fp_line
+		(start 5.08 -5.64)
+		(end -5.05 -5.64)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "df4e196b-69ee-4680-b301-7aea2d3f8aa9")
+	)
+	(fp_line
+		(start 5.08 4.52)
+		(end -5.05 4.52)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f79dd2fe-5e68-485e-b501-00f6ce0c8a47")
+	)
+	(fp_line
+		(start 5.08 4.52)
+		(end 5.08 -5.64)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "49f51462-21c1-4b72-8469-90ef563c034b")
+	)
+	(fp_circle
+		(center -5.21 4.5)
+		(end -5.18 4.5)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "794a2f03-d0ed-487d-a51a-05c6098d2407")
+	)
+	(fp_circle
+		(center -2.54 0)
+		(end -2.26 0)
+		(stroke
+			(width 0.55)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "ce1f9151-0300-4875-8a97-63ac8abf78fa")
+	)
+	(fp_circle
+		(center 2.54 0)
+		(end 2.82 0)
+		(stroke
+			(width 0.55)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "e4dcb711-a4af-483d-9bc3-b3ed51af8d20")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "a79e2f66-4e2a-43f5-a92a-bd78ce089d65")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -2.54 0 180)
+		(size 2 2)
+		(drill 1.300023)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "5fc6cf63-56e7-4422-94a3-28c69968b4bd")
+	)
+	(pad "2" thru_hole circle
+		(at 2.54 0 180)
+		(size 2 2)
+		(drill 1.300023)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "a51b01fa-3a75-459c-b41c-16c6a458e809")
+	)
+	(model "/lib.3dshapes/CONN-TH_2P-P5.00_WJ500V-5.08-2P.wrl"
+		(offset
+			(xyz 2.54 -0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
